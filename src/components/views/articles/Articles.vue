@@ -7,8 +7,8 @@
       <h3>{{ articleLabel }}</h3>
     </div>
     <div class="container">
-      <div v-bind:key="art.articleId" v-for="art in data">
-        <router-link :to="{ path: `/articles/${art.articleId}` }" style="text-decoration: none">
+      <div v-bind:key="art.id" v-for="art in data">
+        <router-link :to="{ path: `/articles/${art.id}` }" style="text-decoration: none">
           <card v-bind:name="art.name" v-bind:category="art.category" v-bind:price="art.price"></card>
         </router-link>
       </div>
@@ -21,6 +21,7 @@
 
 <script>
 import Card from "./Card";
+import axios from "axios";
 
 export default {
   name: "articles",
@@ -28,42 +29,26 @@ export default {
     card: Card
   },
   props: ["articles"],
+  mounted() {
+    const path = "articles";
+    axios
+      .get(`http://localhost:8000/${path}`)
+      .then(response => {
+        console.log(response.data);
+        this.data = response.data;
+      })
+      .catch(
+        err =>
+          // Redirigir a pagina con http request error
+          (window.location.href = "/")
+      );
+  },
   data() {
     return {
       articleLabel: "These are my articles",
+      status: "loading",
       // Hacer llamada con axios para obtener todos los articulos
-      data: [
-        {
-          articleId: 1,
-          name: "papel",
-          category: "utiles",
-          price: "2000"
-        },
-        {
-          articleId: 2,
-          name: "libreta",
-          category: "materiales",
-          price: "4000"
-        },
-        {
-          articleId: 3,
-          name: "libreta",
-          category: "materiales",
-          price: "4000"
-        },
-        {
-          articleId: 4,
-          name: "libreta",
-          category: "materiales",
-          price: "4000"
-        },
-        {
-          articleId: 5,
-          name: "libreta",
-          category: "materiales",
-          price: "4000"
-        }
-      ]
+      data: []
     };
   }
 };

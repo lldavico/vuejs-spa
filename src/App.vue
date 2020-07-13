@@ -15,6 +15,11 @@ export default {
   components: {
     navbar: Navbar,
     info: Info
+  },
+  data() {
+    return {
+      logged: false
+    };
   }
 };
 </script>

@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Articles from './components/Articles'
-import Article from './components/Article'
-import Home from './components/Home'
+import Articles from './components/views/articles/Articles'
+import Article from './components/views/articles/Article'
+import Home from './components/views/Home'
+import SignIn from './components/views/auth/SignIn'
+import PageNotFound from './components/views/errors/PageNotFound'
 
 Vue.use(Router)
 
@@ -12,7 +14,7 @@ export default new Router({
         {
             path: '/',
             name: 'Home',
-            component: Home
+            component: Home,
         },
         {
             path: '/articles',
@@ -31,6 +33,16 @@ export default new Router({
               }
             ]
             */
+        },
+        {
+            path: '/signin',
+            name: 'SignIn',
+            component: SignIn,
+        },
+        {
+            path: '*',
+            name: 'PageNotFound',
+            component: PageNotFound
         }
     ]
 })

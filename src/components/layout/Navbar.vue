@@ -5,10 +5,13 @@
         <router-link to="/">Home</router-link>
       </li>
       <li class="r-item">
-        <a href="/">Buscar</a>
+        <router-link to="/signin">Sign in</router-link>
       </li>
       <li class="r-item">
-        <a href="/">Carrito de compras</a>
+        <router-link to="/">Buscar</router-link>
+      </li>
+      <li class="r-item">
+        <router-link to="/">Carro de compras</router-link>
       </li>
       <li class="r-item">
         <router-link to="/articles">Artículos</router-link>
